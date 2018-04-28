@@ -6,7 +6,12 @@ var _mouse_relative = Vector2()
 
 var draggable = true
 
+onready var shape = get_node("Area2D/CollisionShape2D").shape
+onready var default_extents = shape.extents
+
 func _input(event):
+	shape = shape.duplicate()
+	get_node("Area2D/CollisionShape2D").shape = shape
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if not event.pressed and GlobalVars.card_holding == self:
 			_drop()
@@ -18,7 +23,6 @@ func _input(event):
 				z_index = max(z_index, card.z_index)
 			z_index += 1
 			
-	
 func _ready():
 	add_to_group("drag_slots")
 	add_to_group("draggables")
@@ -31,6 +35,7 @@ func _process(delta):
 		self.global_position = get_global_mouse_position() + _mouse_relative
 	
 func _mouse_entered():
+	print(shape.extents)
 	mouse_over = true
 	
 func _mouse_exited():
@@ -49,6 +54,7 @@ func add_card(card):
 		# Set the position
 		card.z_index = len(cards)
 		card.position = Vector2(0, len(cards) * card_offset.y)
+		shape.extents = Vector2(default_extents.x, default_extents.y + len(cards) *  card_offset.y)
 		cards.append(card)
 		card.reset_position = card.position
 		card.draggable = false
@@ -56,7 +62,7 @@ func add_card(card):
 		card.connect("mouse_entered", self, "hover_top_card")
 		card.connect("mouse_exited", self, "hover_top_card")
 		reset_z_index()
-
+		
 func add_cards_from_array(arr):
 	for card in arr:
 		add_card(card)
@@ -64,15 +70,19 @@ func add_cards_from_array(arr):
 func remove_card(card):
 	if cards.has(card):
 		card.container = null
+		card.disconnect("mouse_entered", self, "hover_top_card")
+		card.disconnect("mouse_exited", self, "hover_top_card")
 		if card.get_parent():
 			card.get_parent().remove_child(card)
 		card.world_parent.add_child(card)
 		cards.remove(cards.find(card))
+		shape.extents = Vector2(default_extents.x, default_extents.y + len(cards) *  card_offset.y)
 		return card
 		
 func remove_all_cards():
 	var dup = cards.duplicate()
-	cards.clear()
+	for card in cards:
+		remove_card(card)
 	return dup
 	
 func _drop():

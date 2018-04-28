@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Field/Hand/Hand.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Field/Slot/Slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Field/Slot/slots_grid.gd" type="Script" id=2]
 
 [sub_resource type="GDScript" id=1]
 
@@ -13,24 +13,19 @@ func _ready():
 		get_parent().get_node(\"Hand\").add_card(inst)
 	"
 
-[node name="Board" type="Node2D" index="0"]
+[node name="Board" type="Node2D"]
 
-[node name="Testing" type="Node" parent="." index="0"]
+[node name="Hand" parent="." index="0" instance=ExtResource( 1 )]
 
-script = SubResource( 1 )
-
-[node name="Hand" parent="." index="1" instance=ExtResource( 1 )]
-
-position = Vector2( 137.168, 403.967 )
+position = Vector2( 0, 425 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Slot" parent="." index="2" instance=ExtResource( 2 )]
+[node name="SlotsGrid" type="Node2D" parent="." index="1"]
 
-position = Vector2( 321.063, 137.168 )
-_sections_unfolded = [ "Visibility" ]
+script = ExtResource( 2 )
 
-[node name="Slot2" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Testing" type="Node" parent="." index="2"]
 
-position = Vector2( 602.215, 144.534 )
+script = SubResource( 1 )
 
 
