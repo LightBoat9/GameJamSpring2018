@@ -1,6 +1,6 @@
 extends Node2D
 
-var slots_amount = Vector2(4,2)
+var slots_amount = Vector2(5,2)
 var offset = Vector2(150, 200)
 
 var Slot = preload("res://Field/Slot/Slot.tscn")

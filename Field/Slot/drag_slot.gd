@@ -41,25 +41,28 @@ func _mouse_exited():
 	mouse_over = false
 	
 func add_card(card):
-	if card is preload("res://Card/Ingredient.gd"): #and (len(cards)>0 or card.ingredientIndex == ingredient.bread): 
-		if GlobalVars.card_holding == card:
-			GlobalVars.card_holding = null
-		if card.get_parent():
-			if card.get_parent() is preload("res://Field/card_container.gd"):
-				card.get_parent().remove_card(card)
-			card.get_parent().remove_child(card)
-		add_child(card)
-		# Set the position
-		card.z_index = len(cards)
-		card.position = Vector2(0, len(cards) * card_offset.y)
-		shape.extents = Vector2(default_extents.x, default_extents.y + len(cards) *  card_offset.y)
-		cards.append(card)
-		card.reset_position = card.position
-		card.draggable = false
-		card.container = self
-		card.connect("mouse_entered", self, "hover_top_card")
-		card.connect("mouse_exited", self, "hover_top_card")
-		reset_z_index()
+	if not card is preload("res://Card/Ingredient.gd"):
+		return
+	if not len(cards) and card.ingredientIndex != card.ingredient.bread:
+		return
+	if GlobalVars.card_holding == card:
+		GlobalVars.card_holding = null
+	if card.get_parent():
+		if card.get_parent() is preload("res://Field/card_container.gd"):
+			card.get_parent().remove_card(card)
+		card.get_parent().remove_child(card)
+	add_child(card)
+	# Set the position
+	card.z_index = len(cards)
+	card.position = Vector2(0, len(cards) * card_offset.y)
+	shape.extents = Vector2(default_extents.x, default_extents.y + len(cards) *  card_offset.y)
+	cards.append(card)
+	card.reset_position = card.position
+	card.draggable = false
+	card.container = self
+	card.connect("mouse_entered", self, "hover_top_card")
+	card.connect("mouse_exited", self, "hover_top_card")
+	reset_z_index()
 		
 func add_cards_from_array(arr):
 	for card in arr:

@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends \"res://BaseScripts/state_machine.gd\"
+
+var current_player = 1
+
+var next_state
+
+onready var hand = get_parent().get_node(\"Hand\")
+onready var deck = get_parent().get_node(\"Deck\")
+onready var button = get_node(\"Button\")
+onready var text_area = get_node(\"Label\")
+
+func _ready():
+	set_current_state(\"new_game\")
+	button.connect(\"pressed\", self, \"button_pressed\")
+	
+func button_pressed():
+	set_current_state(next_state)
+	
+func new_game_enter():
+	text_area.text = \"Player \" + str(current_player) + \" Look Away!\"
+	starting_hand()
+	next_state = \"play_cards\"
+	
+func play_cards_enter():
+	text_area.text = \"Player \" + str(current_player) + \"'s Play Phase\"
+	button.text = \"End Turn\"
+	set_hand_state(\"face_up\")
+	
+func set_hand_state(state):
+	for x in hand.cards:
+		x.set_current_state(state)
+	
+func starting_hand():
+	deck.new_cards()
+	for i in range(hand.MAX_CARDS):
+		var card = deck.remove_top_card()
+		hand.add_card(card)"
+
+[node name="GameMaster" type="Node2D" index="0"]
+
+script = SubResource( 1 )
+
+[node name="Button" type="Button" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 27.0
+margin_top = 25.0
+margin_right = 96.0
+margin_bottom = 45.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Continue"
+flat = false
+align = 1
+
+[node name="Label" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 4.0
+margin_top = 7.0
+margin_right = 130.0
+margin_bottom = 21.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Player 1 Look Away!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
