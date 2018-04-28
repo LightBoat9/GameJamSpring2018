@@ -5,17 +5,17 @@ extends "res://Card/Card.gd"
 #As such, it is necessary to check Ingredient.ingredientIndex
 #instead of comparing directly.
 var myIngredients = []
-onready var myGrid = get_node("theGrid")
+onready var myGrid = get_node("Container/theGrid")
 
 func _ready():
 	set_current_state("face_up")
 	
+	draggable = true
 	var newIngredients = [ingredient.bread, ingredient.lettuce, ingredient.tomato, ingredient.bread]
 	myIngredients += newIngredients
 	_loadIntoGrid()
 
 func _loadIntoGrid():
-	myGrid.columns = len(myIngredients)/2
 	for part in myIngredients:
 		var texPath
 		match part:
@@ -26,14 +26,12 @@ func _loadIntoGrid():
 			ingredient.tomato:
 				texPath = "res://Card/textures/ingredients/tomate.png"
 		var rectangle = TextureRect.new()
-		var scaleFactor = 0.25
+		var scaleFactor = 0.33
 		rectangle.texture = load(texPath)
 		rectangle.expand = true
 		rectangle.stretch_mode = rectangle.STRETCH_SCALE
 		rectangle.rect_min_size = Vector2(200.0,200.0)*scaleFactor
-		
-		print(Vector2(200.0,200.0)*scaleFactor)
-		print(rectangle.rect_size)
+		rectangle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
 		myGrid.add_child(rectangle)
 
