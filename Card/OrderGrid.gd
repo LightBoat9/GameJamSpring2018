@@ -10,3 +10,4 @@ func _ready():
 			var inst = Order.instance()
 			add_child(inst)
 			inst.position = Vector2(x,y) * offset
+			inst.reset_position = inst.position

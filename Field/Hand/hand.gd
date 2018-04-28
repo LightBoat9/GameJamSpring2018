@@ -16,7 +16,18 @@ func add_card(card):
 	card.reset_position = card.position
 	card.draggable = true
 	
+func add_cards_from_array(arr):
+	for card in arr:
+		add_card(card)
+	
 func remove_card(card):
-	if cards.has(card):
-		cards.remove(cards.find(card))
-		return card
+	cards.remove(cards.find(card))
+	if card.get_parent():
+		card.get_parent().remove_child(card)
+	return card
+		
+func remove_all_cards():
+	var dup = cards.duplicate()
+	while not cards.empty():
+		remove_card(cards[len(cards)-1])
+	return dup

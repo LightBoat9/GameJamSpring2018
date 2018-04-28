@@ -54,6 +54,6 @@ func remove_top_card():
 		
 func remove_all_cards():
 	var dup = cards.duplicate()
-	for card in cards:
-		remove_card(card)
+	while not cards.empty():
+		remove_card(cards[len(cards)-1])
 	return dup

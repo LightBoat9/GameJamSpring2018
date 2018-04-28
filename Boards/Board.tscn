@@ -6,11 +6,11 @@
 [ext_resource path="res://Field/Deck/Deck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Card/OrderGrid.tscn" type="PackedScene" id=5]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" index="0"]
 
 [node name="GameMaster" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 715.642, 485.98 )
+position = Vector2( 736.147, 502.385 )
 
 [node name="Hand" parent="." index="1" instance=ExtResource( 2 )]
 
