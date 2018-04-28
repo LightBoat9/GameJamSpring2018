@@ -28,4 +28,8 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 321.063, 137.168 )
 
+[node name="Slot2" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 602.215, 144.534 )
+
 
