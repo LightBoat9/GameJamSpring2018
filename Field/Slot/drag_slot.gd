@@ -35,21 +35,19 @@ func _process(delta):
 		self.global_position = get_global_mouse_position() + _mouse_relative
 	
 func _mouse_entered():
-	print(shape.extents)
 	mouse_over = true
 	
 func _mouse_exited():
 	mouse_over = false
 	
 func add_card(card):
-	# Reparent the card
-	if GlobalVars.card_holding == card:
-		GlobalVars.card_holding = null
-	if card.get_parent():
-		if card.get_parent() is preload("res://Field/card_container.gd"):
-			card.get_parent().remove_card(card)
-		card.get_parent().remove_child(card)
 	if card is preload("res://Card/Ingredient.gd"): #and (len(cards)>0 or card.ingredientIndex == ingredient.bread): 
+		if GlobalVars.card_holding == card:
+			GlobalVars.card_holding = null
+		if card.get_parent():
+			if card.get_parent() is preload("res://Field/card_container.gd"):
+				card.get_parent().remove_card(card)
+			card.get_parent().remove_child(card)
 		add_child(card)
 		# Set the position
 		card.z_index = len(cards)
