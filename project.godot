@@ -14,6 +14,10 @@ config/name="GameJamSpring2018"
 run/main_scene="res://Boards/Board.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVars="*res://Singletons/GlobalVars.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
