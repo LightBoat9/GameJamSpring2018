@@ -14,8 +14,8 @@ func _input(event):
 			reset_z_index()
 			_mouse_relative = self.global_position - get_global_mouse_position()
 			GlobalVars.card_holding = self
-			for x in get_tree().get_nodes_in_group("draggables"):
-				z_index = max(z_index, x.z_index)
+			for card in get_tree().get_nodes_in_group("draggables"):
+				z_index = max(z_index, card.z_index)
 			z_index += 1
 			
 	
@@ -44,18 +44,19 @@ func add_card(card):
 		if card.get_parent() is preload("res://Field/card_container.gd"):
 			card.get_parent().remove_card(card)
 		card.get_parent().remove_child(card)
-	add_child(card)
-	# Set the position
-	card.z_index = len(cards)
-	card.position = Vector2(0, len(cards) * card_offset.y)
-	cards.append(card)
-	card.reset_position = card.position
-	card.draggable = false
-	card.container = self
-	card.connect("mouse_entered", self, "hover_top_card")
-	card.connect("mouse_exited", self, "hover_top_card")
-	reset_z_index()
-	
+	if card is preload("res://Card/Ingredient.gd"): #and (len(cards)>0 or card.ingredientIndex == ingredient.bread): 
+		add_child(card)
+		# Set the position
+		card.z_index = len(cards)
+		card.position = Vector2(0, len(cards) * card_offset.y)
+		cards.append(card)
+		card.reset_position = card.position
+		card.draggable = false
+		card.container = self
+		card.connect("mouse_entered", self, "hover_top_card")
+		card.connect("mouse_exited", self, "hover_top_card")
+		reset_z_index()
+
 func add_cards_from_array(arr):
 	for card in arr:
 		add_card(card)
@@ -80,20 +81,23 @@ func _drop():
 			inst.add_cards_from_array(remove_all_cards())
 	self.position = Vector2()
 	GlobalVars.card_holding = null
-	
+	reset_z_index()
+
 func reset_z_index():
-	for x in range(len(cards)):
-		cards[x].z_index = x
+	for index in range(len(cards)):
+		var zOff = 0
+		z_index = zOff
+		
+		for x in range(len(cards)):
+			cards[x].z_index = zOff+x
 		
 func hover_top_card():
-	if GlobalVars.card_holding == self:
+	if GlobalVars.card_holding != null:
 		return
 	var top_card
-	for x in range(len(cards)):
-		if cards[x].mouse_over:
-			top_card = cards[x]
+	for index in range(len(cards)):
+		if cards[index].mouse_over:
+			top_card = cards[index]
 	reset_z_index()
 	if top_card:
-		for x in get_tree().get_nodes_in_group("draggables"):
-			top_card.z_index = max(top_card.z_index, x.z_index)
-		top_card.z_index -= 1
+		top_card.z_index = len(cards)

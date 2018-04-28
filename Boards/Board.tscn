@@ -27,6 +27,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Slot" parent="." index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 321.063, 137.168 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Slot2" parent="." index="3" instance=ExtResource( 2 )]
 
