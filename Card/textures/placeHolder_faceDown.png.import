@@ -7,10 +7,10 @@ path="res://.import/placeHolder_faceDown.png-0cb7cd72ea2b16cdbf198eba597b9a60.st
 [deps]
 
 source_file="res://Card/textures/placeHolder_faceDown.png"
-source_md5="e339704a9f58ef349a7b3ed4d3474783"
+source_md5="3936c72b26a84b98817982c7805157cf"
 
 dest_files=[ "res://.import/placeHolder_faceDown.png-0cb7cd72ea2b16cdbf198eba597b9a60.stex" ]
-dest_md5="818694690a95cd9bdea8cc401ac132cc"
+dest_md5="23a4a94fe5d9e6fe8dbd66e6afc34a2f"
 
 [params]
 

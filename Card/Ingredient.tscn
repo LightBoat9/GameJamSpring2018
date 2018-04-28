@@ -1,14 +1,43 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Card/textures/placeHolder_faceDown.png" type="Texture" id=1]
+[ext_resource path="res://Card/textures/placeHolder_faceUp.png" type="Texture" id=1]
 [ext_resource path="res://Card/Ingredient.gd" type="Script" id=2]
+[ext_resource path="res://Card/textures/ingredients/bread.png" type="Texture" id=3]
 
-[node name="Ingredient" type="Sprite" index="0"]
+[node name="Ingredient" type="Sprite"]
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="picture" type="Sprite" parent="." index="0"]
+
+position = Vector2( 125, 175 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 7.0
+margin_right = 142.0
+margin_bottom = 21.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Bread"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex"
+path="res://.import/tomate.png-5da7dc1715e52f53c1d38ef7198d6cee.stex"
 
 [deps]
 
-source_file="res://Card/textures/placeHolder_faceUp.png"
-source_md5="415a88e700acbd93b6ad6b737553a558"
+source_file="res://Card/textures/ingredients/tomate.png"
+source_md5="ab76b27b1fb9cd6d9068f570b07add44"
 
-dest_files=[ "res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex" ]
-dest_md5="6cb5f0112d3952827166f071880a422b"
+dest_files=[ "res://.import/tomate.png-5da7dc1715e52f53c1d38ef7198d6cee.stex" ]
+dest_md5="0ae895115e75c043067438ca54d682aa"
 
 [params]
 
