@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex"
+path="res://.import/bread.png-9e1011dc3c4eec1dfeaed69b6df260d5.stex"
 
 [deps]
 
-source_file="res://Card/textures/placeHolder_faceUp.png"
-source_md5="415a88e700acbd93b6ad6b737553a558"
+source_file="res://Card/textures/ingredients/bread.png"
+source_md5="3084f9e609caed1058367576afa73288"
 
-dest_files=[ "res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex" ]
-dest_md5="6cb5f0112d3952827166f071880a422b"
+dest_files=[ "res://.import/bread.png-9e1011dc3c4eec1dfeaed69b6df260d5.stex" ]
+dest_md5="43096bdcead6847dbab334e54827ca8c"
 
 [params]
 

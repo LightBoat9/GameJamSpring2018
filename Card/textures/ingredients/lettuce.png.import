@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex"
+path="res://.import/lettuce.png-fa13b06e5da5b597ea1b48e33c5041df.stex"
 
 [deps]
 
-source_file="res://Card/textures/placeHolder_faceUp.png"
-source_md5="415a88e700acbd93b6ad6b737553a558"
+source_file="res://Card/textures/ingredients/lettuce.png"
+source_md5="1a89605498f47cf2e2152556bab088aa"
 
-dest_files=[ "res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex" ]
-dest_md5="6cb5f0112d3952827166f071880a422b"
+dest_files=[ "res://.import/lettuce.png-fa13b06e5da5b597ea1b48e33c5041df.stex" ]
+dest_md5="9e259a21d5ec05571dfa64bb07c8eb95"
 
 [params]
 
