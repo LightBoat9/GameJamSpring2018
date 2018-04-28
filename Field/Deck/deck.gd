@@ -14,8 +14,8 @@ func new_cards():
 	remove_all_cards()
 	for x in range(deck_size):
 		var inst = Ingredient.instance()
-		inst.ingredientIndex = randi() % 2
 		add_card(inst)
+		inst.ingredientIndex = randi() % 3
 	
 func add_card(card):
 	if not card is preload("res://Card/Ingredient.gd"):

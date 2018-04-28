@@ -50,7 +50,6 @@ func add_card(card):
 	if card.get_parent():
 		if card.get_parent() is preload("res://Field/card_container.gd"):
 			card.get_parent().remove_card(card)
-		card.get_parent().remove_child(card)
 	add_child(card)
 	# Set the position
 	card.z_index = len(cards)
@@ -90,6 +89,11 @@ func _drop():
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
 		if inst != self and inst.mouse_over:
 			inst.add_cards_from_array(remove_all_cards())
+	for inst in get_tree().get_nodes_in_group("SandwichReceptacles"):
+		var result = inst._validateIngredients(cards)
+		
+		if result:
+			print(inst._scoreIngredients(remove_all_cards()))
 	self.position = Vector2()
 	GlobalVars.card_holding = null
 	reset_z_index()

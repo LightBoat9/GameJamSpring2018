@@ -1,18 +1,23 @@
 extends "res://Card/Card.gd"
 
 var pointVal = 0
-var ingredientIndex = 0
-onready var ingredientImage = get_node("picture")
+onready var ingredientImage = get_node("Splitter/picture")
+onready var ingredientIndex setget _loadIngredientTexture
 
 func _ready():
 	set_current_state("face_up")
-	_loadIngredientTexture(ingredient.lettuce)
 	
 	draggable = true
 
+func face_up_enter():
+	ingredientImage.show()
+
+func face_down_enter():
+	ingredientImage.hide()
+
 func _loadIngredientTexture(i):
 	ingredientIndex = i
-	var texPath
+	var texPath = "res://Card/textures/ingredients/bread.png"
 	match ingredientIndex:
 		ingredient.bread:
 			texPath = "res://Card/textures/ingredients/bread.png"

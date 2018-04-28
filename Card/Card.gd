@@ -21,7 +21,10 @@ var init = true
 enum ingredient{
 	bread,
 	lettuce,
-	tomato
+	tomato,
+	pork,
+	butter,
+	cheese
 }
 
 func _ready():
@@ -84,10 +87,12 @@ func _mouse_in_rect(mouse_pos, rect_pos, size, scale=Vector2(1,1), is_centered=f
 
 func face_up_enter():
 	self.texture = tex_faceUp
+	draggable = true
 
 func face_down_enter():
 	self.texture = tex_faceDown
-	
+	draggable = false
+
 func _drop():
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
 		if inst.mouse_over:

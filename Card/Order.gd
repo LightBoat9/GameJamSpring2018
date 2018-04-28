@@ -6,11 +6,19 @@ extends "res://Card/Card.gd"
 #instead of comparing directly.
 var myIngredients = []
 onready var myGrid = get_node("Container/theGrid")
+onready var myLabel = get_node("Container/nameLabel")
+var perfectBonus = 0
 
 func _ready():
 	set_current_state("face_up")
+	add_to_group("SandwichReceptacles")
 	
 	draggable = true
+	
+	_generateOrder(0)
+
+func _setOrder(inputIngredients):
+	myIngredients = inputIngredients.duplicate()
 
 func _loadIntoGrid():
 	for part in myIngredients:
@@ -39,9 +47,14 @@ func _findIngredient(val,ingredients):
 	return -1
 
 func _validateIngredients(ingredients):
+	var tempInputs = ingredients.duplicate()
+	
 	for temp in myIngredients:
-		if _findIngredient(temp,ingredients)==-1:
+		var index = _findIngredient(temp,tempInputs)
+		if index==-1:
 			return false
+		else:
+			tempInputs.remove(index)
 	return true
 
 #Warning: only call this after _validateIngredients has passed
@@ -58,3 +71,25 @@ func _scoreIngredients(ingredients):
 		score -= extra.pointVal
 	
 	return score
+
+func _generateOrder(index):
+	var newOrder = [ingredient.bread]
+	var orderName = "Error"
+	
+	match index:
+		0:
+			newOrder += [ingredient.lettuce, ingredient.tomato]
+			perfectBonus = 20
+			orderName = "Boring Sandwich"
+		1:
+			newOrder += [ingredient.cheese]
+			perfectBonus = 10
+			orderName = "Cheese Sandwich"
+		2:
+			newOrder += [ingredient.cheese, ingredient.butter]
+			perfectBonus = 40
+			orderName = "Grilled Cheese"
+	
+	myLabel.text = orderName
+	myIngredients = newOrder+[ingredient.bread]
+	_loadIntoGrid()
