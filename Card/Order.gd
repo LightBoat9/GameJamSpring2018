@@ -7,6 +7,7 @@ extends "res://Card/Card.gd"
 var myIngredients = []
 
 func _ready():
+	set_current_state("face_up")
 	pass
 
 func _findIngredient(val,ingredients):
