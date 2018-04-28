@@ -30,9 +30,11 @@ func _ready():
 		var col_area = CollisionShape2D.new()
 		var shape = RectangleShape2D.new()
 		shape.extents = self.texture.get_size() * self.scale
-		col_area.position = shape.extents
+		col_area.position = shape.extents + self.offset
 		col_area.shape = shape
-		area.rotation = self.rotation
+		
+		
+		#area.rotation = self.rotation
 		area.add_child(col_area)
 		add_child(area)
 		area.connect("mouse_entered", self, "mouse_entered")

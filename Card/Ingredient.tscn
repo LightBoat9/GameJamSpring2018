@@ -4,7 +4,7 @@
 [ext_resource path="res://Card/Ingredient.gd" type="Script" id=2]
 [ext_resource path="res://Card/textures/ingredients/bread.png" type="Texture" id=3]
 
-[node name="Ingredient" type="Sprite"]
+[node name="Ingredient" type="Sprite" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )

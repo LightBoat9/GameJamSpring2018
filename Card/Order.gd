@@ -11,9 +11,6 @@ func _ready():
 	set_current_state("face_up")
 	
 	draggable = true
-	var newIngredients = [ingredient.bread, ingredient.lettuce, ingredient.tomato, ingredient.bread]
-	myIngredients += newIngredients
-	_loadIntoGrid()
 
 func _loadIntoGrid():
 	for part in myIngredients:
@@ -36,14 +33,14 @@ func _loadIntoGrid():
 		myGrid.add_child(rectangle)
 
 func _findIngredient(val,ingredients):
-	for i in range(ingredients.count):
+	for i in len(ingredients):
 		if ingredients[i].ingredientIndex == val:
 			return i
 	return -1
 
 func _validateIngredients(ingredients):
 	for temp in myIngredients:
-		if _findIngredient(temp,ingredients):
+		if _findIngredient(temp,ingredients)==-1:
 			return false
 	return true
 
