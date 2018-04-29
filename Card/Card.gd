@@ -24,7 +24,8 @@ enum ingredient{
 	tomato,
 	pork,
 	butter,
-	cheese
+	cheese,
+	mayo
 }
 
 func _ready():
