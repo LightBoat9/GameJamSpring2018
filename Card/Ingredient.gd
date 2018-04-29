@@ -9,9 +9,11 @@ onready var pointLabel = get_node("VertSplitter/HorzSplitter/pointLabel")
 
 func face_up_enter():
 	faceUpVisuals.show()
+	.face_up_enter()
 
 func face_down_enter():
 	faceUpVisuals.hide()
+	.face_down_enter()
 
 func _loadIngredientTexture(i):
 	ingredientIndex = i
