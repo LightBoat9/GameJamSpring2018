@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex"
+path="res://.import/card_faceUp.png-e7ca1d38ef1848d63eb86a48e3bbf457.stex"
 
 [deps]
 
-source_file="res://Card/textures/placeHolder_faceUp.png"
+source_file="res://Card/textures/card_faceUp.png"
 source_md5="f389a4f421c83701975233be843ea712"
 
-dest_files=[ "res://.import/placeHolder_faceUp.png-713b49623c2a209435f3b78719e82aa4.stex" ]
+dest_files=[ "res://.import/card_faceUp.png-e7ca1d38ef1848d63eb86a48e3bbf457.stex" ]
 dest_md5="55a7e67f07de237fe5239be9c2273778"
 
 [params]

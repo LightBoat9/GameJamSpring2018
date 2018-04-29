@@ -6,8 +6,8 @@ signal mouse_exited
 var mouse_over
 var _mouse_relative = Vector2()  # Relative position of mouse for dragging relative
 
-onready var tex_faceUp = preload("res://Card/textures/placeHolder_faceUp.png")
-onready var tex_faceDown = preload("res://Card/textures/placeHolder_faceDown.png")
+onready var tex_faceUp = preload("res://Card/textures/card_faceUp.png")
+onready var tex_faceDown = preload("res://Card/textures/card_faceDown.png")
 
 var reset_position = Vector2()
 
