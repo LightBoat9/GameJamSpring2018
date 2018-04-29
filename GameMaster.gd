@@ -61,7 +61,6 @@ func set_hand_state(state):
 		
 func set_order_state(state):
 	for x in orders.orders:
-		print("TEST")
 		x.set_current_state(state)
 		
 func change_players():

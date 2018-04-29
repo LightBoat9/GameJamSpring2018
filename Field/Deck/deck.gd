@@ -1,6 +1,16 @@
 extends "res://Field/card_container.gd"
 	
-var deck_size = 40
+onready var Card = load("res://Card/Card.gd")
+onready var ing_amounts = {
+	Card.ingredient.bread: 10,
+	Card.ingredient.lettuce: 5,
+	Card.ingredient.tomato: 5,
+	Card.ingredient.butter: 5,
+	Card.ingredient.cheese: 5,
+	Card.ingredient.mayo: 5,
+	Card.ingredient.bacon: 2,
+	Card.ingredient.beef: 2
+	}
 	
 var Ingredient = preload("res://Card/Ingredient.tscn")
 
@@ -25,12 +35,12 @@ func mouse_exited():
 	mouse_over = false
 	
 func new_cards():
-	randomize()
 	remove_all_cards()
-	for x in range(deck_size):
-		var inst = Ingredient.instance()
-		add_card(inst)
-		inst.ingredientIndex = randi() % 7
+	for type in ing_amounts:
+		for amount in ing_amounts[type]:
+			var inst = Ingredient.instance()
+			add_card(inst)
+			inst.ingredientIndex = type
 	
 func add_card(card):
 	if not card is preload("res://Card/Ingredient.gd"):
