@@ -6,6 +6,8 @@ var next_state
 
 onready var hand = get_parent().get_node("Hand")
 onready var temp_hand = get_parent().get_node("TempHand")
+onready var orders = get_parent().get_node("OrderGrid")
+onready var temp_orders = get_parent().get_node("TempOrder")
 onready var deck = get_parent().get_node("Deck")
 onready var button = get_node("Button")
 onready var text_area = get_node("Label")
@@ -27,6 +29,10 @@ func new_game_enter():
 	deck.new_cards()
 	draw(5)
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
+	orders.new_orders()
+	temp_orders.add_orders_from_array(orders.remove_all_orders())
+	orders.new_orders()
+	set_order_state("face_down")
 	draw(5)
 	next_state = "play_cards"
 
@@ -36,11 +42,13 @@ func play_cards_enter():
 	text_area.text = "Player " + str(current_player) + "'s Play Phase"
 	button.text = "End Turn"
 	set_hand_state("face_up")
+	set_order_state("face_up")
 	next_state = "change_player"
 	
 func change_player_enter():
 	change_players()
 	set_hand_state("face_down")
+	set_order_state("face_down")
 	text_area.text = "Player " + str(1 if current_player == 2 else 2) + " Look Away!"
 	next_state = "play_cards"
 	
@@ -51,10 +59,19 @@ func set_hand_state(state):
 	for x in hand.cards:
 		x.set_current_state(state)
 		
+func set_order_state(state):
+	for x in orders.orders:
+		print("TEST")
+		x.set_current_state(state)
+		
 func change_players():
 	var temp1 = temp_hand.remove_all_cards()
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
 	hand.add_cards_from_array(temp1)
+	
+	var temp2 = temp_orders.remove_all_orders()
+	temp_orders.add_orders_from_array(orders.remove_all_orders())
+	orders.add_orders_from_array(temp2)
 	current_player = 1 if current_player == 2 else 2
 		
 func draw(amount):

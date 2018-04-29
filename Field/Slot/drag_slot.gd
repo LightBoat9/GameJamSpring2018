@@ -4,7 +4,7 @@ onready var area = get_node("Area2D")
 onready var mouse_over = false
 var _mouse_relative = Vector2()
 
-var draggable = true
+var draggable = false
 
 onready var shape = get_node("Area2D/CollisionShape2D").shape
 onready var default_extents = shape.extents
@@ -47,6 +47,7 @@ func add_card(card):
 		return
 	if not len(cards) and card.ingredientIndex != card.ingredient.bread:
 		return
+	draggable = true
 	if GlobalVars.card_holding == card:
 		GlobalVars.card_holding = null
 	if card.get_parent():
@@ -80,6 +81,7 @@ func remove_card(card):
 		return card
 		
 func remove_all_cards():
+	draggable = false
 	var dup = cards.duplicate()
 	while len(cards):
 		remove_card(cards[0])
