@@ -15,7 +15,9 @@ enum orders{
 	cheeseSandwich,
 	grilledCheese,
 	saladSandwich,
-	BLT
+	BLT,
+	breakfastSandwich,
+	reuben
 }
 
 func _ready():
@@ -122,6 +124,15 @@ func _generateOrder(index):
 			newOrder += [ingredient.bacon, ingredient.lettuce, ingredient.tomato]
 			perfectBonus = 75
 			orderName = "BLT"
+		orders.breakfastSandwich:
+			newOrder += [ingredient.bacon, ingredient.cheese]
+			perfectBonus = 75
+			orderName = "Breakfast Sandwich"
+		orders.reuben:
+			newOrder += [ingredient.beef, ingredient.cheese, ingredient.butter]
+			perfectBonus = 80
+			orderName = "Reuben"
+		
 	
 	nameLabel.text = orderName
 	pointLabel.text = str(perfectBonus)
