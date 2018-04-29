@@ -15,15 +15,16 @@ func _ready():
 	set_current_state("face_up")
 	add_to_group("SandwichReceptacles")
 	
-	draggable = true
-	
-	_generateOrder(0)
+	randomize()
+	_generateOrder(randi() % 3)
 
 func face_up_enter():
 	faceUpVisuals.show()
+	.face_up_enter()
 
 func face_down_enter():
 	faceUpVisuals.hide()
+	.face_down_enter()
 
 func _setOrder(inputIngredients):
 	myIngredients = inputIngredients.duplicate()
@@ -37,6 +38,12 @@ func _loadIntoGrid():
 			ingredient.lettuce:
 				texPath = "res://Card/textures/ingredients/lettuce.png"
 			ingredient.tomato:
+				texPath = "res://Card/textures/ingredients/tomate.png"
+			ingredient.pork:
+				texPath = "res://Card/textures/ingredients/tomate.png"
+			ingredient.butter:
+				texPath = "res://Card/textures/ingredients/tomate.png"
+			ingredient.cheese:
 				texPath = "res://Card/textures/ingredients/tomate.png"
 		var rectangle = TextureRect.new()
 		var scaleFactor = 0.33

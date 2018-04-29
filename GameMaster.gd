@@ -7,7 +7,6 @@ var next_state
 onready var hand = get_parent().get_node("Hand")
 onready var temp_hand = get_parent().get_node("TempHand")
 onready var deck = get_parent().get_node("Deck")
-onready var temp_deck = get_parent().get_node("TempDeck")
 onready var button = get_node("Button")
 onready var text_area = get_node("Label")
 
@@ -20,13 +19,15 @@ func button_pressed():
 
 func new_game_enter():
 	text_area.text = "Player " + str(1 if current_player == 2 else 2) + " Look Away!"
-	new_cards()
+	deck.new_cards()
+	draw(5)
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
-	temp_deck.add_cards_from_array(deck.remove_all_cards())
-	new_cards()
+	draw(5)
 	next_state = "play_cards"
 
 func play_cards_enter():
+	if len(hand.cards) < hand.MAX_CARDS:
+		draw(1)
 	text_area.text = "Player " + str(current_player) + "'s Play Phase"
 	button.text = "End Turn"
 	set_hand_state("face_up")
@@ -47,15 +48,11 @@ func set_hand_state(state):
 		
 func change_players():
 	var temp1 = temp_hand.remove_all_cards()
-	var temp2 = temp_deck.remove_all_cards()
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
-	temp_deck.add_cards_from_array(deck.remove_all_cards())
 	hand.add_cards_from_array(temp1)
-	deck.add_cards_from_array(temp2)
 	current_player = 1 if current_player == 2 else 2
 		
-func new_cards():
-	deck.new_cards()
-	for i in range(hand.MAX_CARDS):
+func draw(amount):
+	for i in range(amount):
 		var card = deck.remove_top_card()
 		hand.add_card(card)
