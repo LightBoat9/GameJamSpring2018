@@ -11,6 +11,8 @@ onready var pointLabel = get_node("splitter/labelSplitter/pointLabel")
 onready var faceUpVisuals = get_node("splitter")
 var perfectBonus = 0
 
+var rectangles = []
+
 enum orders{
 	cheeseSandwich,
 	grilledCheese,
@@ -26,7 +28,9 @@ func _ready():
 	
 func random_order():
 	randomize()
-	_generateOrder(randi() % 3)
+	for x in rectangles:
+		x.queue_free()
+	_generateOrder(randi() % 6)
 	
 func face_up_enter():
 	faceUpVisuals.show()
@@ -50,6 +54,7 @@ func _loadIntoGrid():
 		rectangle.rect_min_size = Vector2(200.0,200.0)*scaleFactor
 		rectangle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
+		rectangles.append(rectangle)
 		myGrid.add_child(rectangle)
 
 func _findIngredient(val,ingredients):
@@ -120,7 +125,6 @@ func _generateOrder(index):
 			perfectBonus = 80
 			orderName = "Reuben"
 		
-	
 	nameLabel.text = orderName
 	pointLabel.text = str(perfectBonus)
 	myIngredients = newOrder+[ingredient.bread]

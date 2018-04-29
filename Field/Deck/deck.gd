@@ -2,12 +2,12 @@ extends "res://Field/card_container.gd"
 	
 onready var Card = load("res://Card/Card.gd")
 onready var ing_amounts = {
-	Card.ingredient.bread: 10,
-	Card.ingredient.lettuce: 5,
-	Card.ingredient.tomato: 5,
+	Card.ingredient.bread: 15,
+	Card.ingredient.lettuce: 4,
+	Card.ingredient.tomato: 4,
 	Card.ingredient.butter: 5,
-	Card.ingredient.cheese: 5,
-	Card.ingredient.mayo: 5,
+	Card.ingredient.cheese: 8,
+	Card.ingredient.mayo: 4,
 	Card.ingredient.bacon: 2,
 	Card.ingredient.beef: 2
 	}
@@ -33,6 +33,16 @@ func mouse_entered():
 	
 func mouse_exited():
 	mouse_over = false
+	
+func shuffle(amount):
+	randomize()
+	for x in range(amount):
+		var r1 = randi() % len(cards)
+		var r2 = randi() % len(cards)
+		var temp = cards[r1]
+		cards[r1] = cards[r2]
+		cards[r2] = temp
+	align_cards()
 	
 func new_cards():
 	remove_all_cards()

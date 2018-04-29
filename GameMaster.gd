@@ -2,6 +2,9 @@ extends "res://BaseScripts/state_machine.gd"
 
 var current_player = 1
 
+onready var scores_labels = [get_node("P1Score"), get_node("P2Score")]
+onready var scores = [0,0]
+
 var next_state
 
 onready var hand = get_parent().get_node("Hand")
@@ -21,12 +24,17 @@ func return_to_deck(card):
 		card.container.remove_card(card)
 	deck.add_card_to_bottom(card)
 
+func return_to_deck_arr(arr):
+	while len(arr) > 0:
+		return_to_deck(arr.pop_front())
+
 func button_pressed():
 	set_current_state(next_state)
 
 func new_game_enter():
 	text_area.text = "Player " + str(1 if current_player == 2 else 2) + " Look Away!"
 	deck.new_cards()
+	deck.shuffle(100)
 	draw(5)
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
 	orders.new_orders()
@@ -77,3 +85,7 @@ func draw(amount):
 	for i in range(amount):
 		var card = deck.remove_top_card()
 		hand.add_card(card)
+		
+func add_score(amount):
+	scores[current_player-1] += amount
+	scores_labels[current_player-1].text = "P" + str(current_player) + " Score: " + str(scores[current_player-1])

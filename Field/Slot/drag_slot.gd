@@ -4,6 +4,8 @@ onready var area = get_node("Area2D")
 onready var mouse_over = false
 var _mouse_relative = Vector2()
 
+onready var gmast = get_tree().root.get_child(get_tree().root.get_child_count()-1).get_node("GameMaster")
+
 var draggable = false
 
 onready var shape = get_node("Area2D/CollisionShape2D").shape
@@ -88,6 +90,14 @@ func remove_all_cards():
 	return dup
 	
 func _drop():
+	
+	for inst in get_tree().get_nodes_in_group("decks"):
+		if inst.mouse_over:
+			var score = 0
+			for x in self.cards:
+				score += x.pointVal
+			gmast.add_score(-score)
+			gmast.return_to_deck_arr(self.cards)
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
 		if inst != self and inst.mouse_over and not len(inst.cards):
 			inst.add_cards_from_array(remove_all_cards())
@@ -97,7 +107,8 @@ func _drop():
 		
 			if result:
 				var list = remove_all_cards()
-				print(inst._scoreIngredients(list))
+				gmast.add_score(inst._scoreIngredients(list))
+				inst.random_order()
 	self.position = Vector2()
 	GlobalVars.card_holding = null
 	reset_z_index()
