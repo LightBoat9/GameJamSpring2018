@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cheese.png-8e36563dd4f14e85e6df2c26dbe34d0b.stex"
+path="res://.import/bacon.png-ed3d83100fda4993c04bb3e2da1e7780.stex"
 
 [deps]
 
-source_file="res://Card/textures/ingredients/cheese.png"
-source_md5="32da2955c1eaf763ec90c14ee9d6b6f2"
+source_file="res://Card/textures/ingredients/bacon.png"
+source_md5="ab9d68771498b67ec43829110ccbd3e3"
 
-dest_files=[ "res://.import/cheese.png-8e36563dd4f14e85e6df2c26dbe34d0b.stex" ]
-dest_md5="7b043f89633ac11df696bf92807ee905"
+dest_files=[ "res://.import/bacon.png-ed3d83100fda4993c04bb3e2da1e7780.stex" ]
+dest_md5="f4a72638d0a999818cf9a1f0e844cf52"
 
 [params]
 

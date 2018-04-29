@@ -44,6 +44,10 @@ func _loadIngredientTexture(i):
 			texPath = "res://Card/textures/ingredients/mayonnaise.png"
 			pointVal = 30
 			name = "Mayonnaise"
+		ingredient.bacon:
+			texPath = "res://Card/textures/ingredients/bacon.png"
+			pointVal = 45
+			name = "Bacon"
 	
 	nameLabel.text = name
 	pointLabel.text = str(pointVal)

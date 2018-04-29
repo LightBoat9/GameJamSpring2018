@@ -22,10 +22,10 @@ enum ingredient{
 	bread,
 	lettuce,
 	tomato,
-	pork,
 	butter,
 	cheese,
-	mayo
+	mayo,
+	bacon
 }
 
 func _ready():

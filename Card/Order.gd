@@ -11,6 +11,13 @@ onready var pointLabel = get_node("splitter/labelSplitter/pointLabel")
 onready var faceUpVisuals = get_node("splitter")
 var perfectBonus = 0
 
+enum orders{
+	cheeseSandwich,
+	grilledCheese,
+	saladSandwich,
+	BLT
+}
+
 func _ready():
 	set_current_state("face_up")
 	add_to_group("SandwichReceptacles")
@@ -87,8 +94,10 @@ func _scoreIngredients(ingredients):
 	
 	score += perfectBonus*int((len(ingredients)==0))
 	
-	for extra in ingredients:
+	while !ingredients.empty():
+		var extra = ingredients.pop_front()
 		score -= extra.pointVal
+		extra.queue_free()
 	
 	return score
 
@@ -97,18 +106,22 @@ func _generateOrder(index):
 	var orderName = "Error"
 	
 	match index:
-		0:
+		orders.saladSandwich:
 			newOrder += [ingredient.lettuce, ingredient.tomato]
 			perfectBonus = 20
-			orderName = "Boring Sandwich"
-		1:
+			orderName = "Salad Sandwich"
+		orders.cheeseSandwich:
 			newOrder += [ingredient.cheese]
 			perfectBonus = 10
 			orderName = "Cheese Sandwich"
-		2:
+		orders.grilledCheese:
 			newOrder += [ingredient.cheese, ingredient.butter]
 			perfectBonus = 40
 			orderName = "Grilled Cheese"
+		orders.BLT:
+			newOrder += [ingredient.bacon, ingredient.lettuce, ingredient.tomato]
+			perfectBonus = 75
+			orderName = "BLT"
 	
 	nameLabel.text = orderName
 	pointLabel.text = str(perfectBonus)
