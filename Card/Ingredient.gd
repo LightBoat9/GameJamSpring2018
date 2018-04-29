@@ -21,39 +21,30 @@ func _loadIngredientTexture(i):
 	var name = "Error"
 	match ingredientIndex:
 		ingredient.bread:
-			texPath = "res://Card/textures/ingredients/bread.png"
 			pointVal = 10
 			name = "Bread"
 		ingredient.lettuce:
-			texPath = "res://Card/textures/ingredients/lettuce.png"
 			pointVal = 15
 			name = "Lettuce"
 		ingredient.tomato:
-			texPath = "res://Card/textures/ingredients/tomate.png"
 			pointVal = 20
 			name = "Tomato"
 		ingredient.cheese:
-			texPath = "res://Card/textures/ingredients/cheese.png"
 			pointVal = 30
 			name = "Cheese"
 		ingredient.butter:
-			texPath = "res://Card/textures/ingredients/butter.png"
 			pointVal = 20
 			name = "Butter"
 		ingredient.mayo:
-			texPath = "res://Card/textures/ingredients/mayonnaise.png"
 			pointVal = 30
 			name = "Mayonnaise"
 		ingredient.bacon:
-			texPath = "res://Card/textures/ingredients/bacon.png"
 			pointVal = 45
 			name = "Bacon"
 		ingredient.beef:
-			texPath = "res://Card/textures/ingredients/beef.png"
 			pointVal = 50
 			name = "Beef"
 	
 	nameLabel.text = name
 	pointLabel.text = str(pointVal)
-	ingredientImage.texture = load(texPath)
-	
+	ingredientImage.texture = _getIngredientTexture(ingredientIndex)

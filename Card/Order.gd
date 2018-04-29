@@ -41,23 +41,10 @@ func _setOrder(inputIngredients):
 
 func _loadIntoGrid():
 	for part in myIngredients:
-		var texPath
-		match part:
-			ingredient.bread:
-				texPath = "res://Card/textures/ingredients/bread.png"
-			ingredient.lettuce:
-				texPath = "res://Card/textures/ingredients/lettuce.png"
-			ingredient.tomato:
-				texPath = "res://Card/textures/ingredients/tomate.png"
-			ingredient.cheese:
-				texPath = "res://Card/textures/ingredients/cheese.png"
-			ingredient.butter:
-				texPath = "res://Card/textures/ingredients/butter.png"
-			ingredient.mayo:
-				texPath = "res://Card/textures/ingredients/mayonnaise.png"
+		
 		var rectangle = TextureRect.new()
 		var scaleFactor = 0.33
-		rectangle.texture = load(texPath)
+		rectangle.texture = _getIngredientTexture(part)
 		rectangle.expand = true
 		rectangle.stretch_mode = rectangle.STRETCH_SCALE
 		rectangle.rect_min_size = Vector2(200.0,200.0)*scaleFactor

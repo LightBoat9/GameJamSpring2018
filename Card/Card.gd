@@ -23,11 +23,12 @@ enum ingredient{
 	bread,
 	lettuce,
 	tomato,
-	butter,
 	cheese,
+	butter,
 	mayo,
 	bacon,
-	beef
+	beef,
+	turkey
 }
 
 func _ready():
@@ -105,3 +106,29 @@ func _drop():
 			inst.add_card(self)
 	self.position = reset_position
 	GlobalVars.card_holding = null
+
+func _getIngredientTexture(index):
+	var texPath = "res://Card/textures/ingredients/bread.png"
+	
+	match index:
+		ingredient.bread:
+			texPath = "res://Card/textures/ingredients/bread.png"
+			if (rand_range(1,100)) == 4:
+				texPath = "res://Card/textures/ingredients/breadSpecial.png"
+		ingredient.lettuce:
+			texPath = "res://Card/textures/ingredients/lettuce.png"
+		ingredient.tomato:
+			texPath = "res://Card/textures/ingredients/tomate.png"
+		ingredient.cheese:
+			texPath = "res://Card/textures/ingredients/cheese.png"
+		ingredient.butter:
+			texPath = "res://Card/textures/ingredients/butter.png"
+		ingredient.mayo:
+			texPath = "res://Card/textures/ingredients/mayonnaise.png"
+		ingredient.beef:
+			texPath = "res://Card/textures/ingredients/beef.png"
+		ingredient.turkey:
+			texPath = "res://Card/textures/ingredients/turkey.png"
+		ingredient.bacon:
+			texPath = "res://Card/textures/ingredients/bacon.png"
+	return load(texPath)
