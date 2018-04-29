@@ -50,6 +50,7 @@ func add_card(card):
 	if card.get_parent():
 		if card.get_parent() is preload("res://Field/card_container.gd"):
 			card.get_parent().remove_card(card)
+		card.get_parent().remove_child(card)
 	add_child(card)
 	# Set the position
 	card.z_index = len(cards)
@@ -69,20 +70,17 @@ func add_cards_from_array(arr):
 	
 func remove_card(card):
 	if cards.has(card):
-		card.container = null
 		card.disconnect("mouse_entered", self, "hover_top_card")
 		card.disconnect("mouse_exited", self, "hover_top_card")
-		if card.get_parent():
-			card.get_parent().remove_child(card)
-		card.world_parent.add_child(card)
+		card.container = null
 		cards.remove(cards.find(card))
 		shape.extents = Vector2(default_extents.x, default_extents.y + len(cards) *  card_offset.y)
 		return card
 		
 func remove_all_cards():
 	var dup = cards.duplicate()
-	for card in cards:
-		remove_card(card)
+	while len(cards):
+		remove_card(cards[0])
 	return dup
 	
 func _drop():
@@ -93,7 +91,8 @@ func _drop():
 		var result = inst._validateIngredients(cards)
 		
 		if result:
-			print(inst._scoreIngredients(remove_all_cards()))
+			var list = remove_all_cards()
+			print(inst._scoreIngredients(list))
 	self.position = Vector2()
 	GlobalVars.card_holding = null
 	reset_z_index()

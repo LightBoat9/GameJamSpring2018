@@ -17,18 +17,30 @@ position = Vector2( 736.147, 502.385 )
 position = Vector2( 20, 425 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="SlotsGrid" type="Node2D" parent="." index="2"]
+[node name="TempHand" parent="." index="2" instance=ExtResource( 2 )]
+
+visible = false
+position = Vector2( 1580.47, 154.327 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="SlotsGrid" type="Node2D" parent="." index="3"]
 
 position = Vector2( 20, 20 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Deck" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Deck" parent="." index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 899, 600 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="OrderGrid" parent="." index="4" instance=ExtResource( 5 )]
+[node name="TempDeck" parent="." index="5" instance=ExtResource( 4 )]
+
+visible = false
+position = Vector2( 1579.78, 581.545 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="OrderGrid" parent="." index="6" instance=ExtResource( 5 )]
 
 position = Vector2( 849, 0 )
 _sections_unfolded = [ "Transform" ]

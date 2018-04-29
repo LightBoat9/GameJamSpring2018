@@ -71,7 +71,7 @@ func mouse_exited():
 		GlobalVars.cards_mouse_over.remove(GlobalVars.cards_mouse_over.find(self))
 
 func _process(delta):
-	if draggable and GlobalVars.card_holding == self:
+	if GlobalVars.card_holding == self:
 		self.global_position = get_global_mouse_position() + _mouse_relative
 
 func _mouse_in_rect(mouse_pos, rect_pos, size, scale=Vector2(1,1), is_centered=false):

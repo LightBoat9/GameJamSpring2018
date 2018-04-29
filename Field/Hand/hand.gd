@@ -13,18 +13,18 @@ func add_card(card):
 	# Set the position
 	card.position = (len(cards) * card.texture.get_size() * card.scale) * Vector2(1,0)
 	cards.append(card)
+	card.container = self
 	card.reset_position = card.position
-	card.draggable = true
 	
 func add_cards_from_array(arr):
 	for card in arr:
 		add_card(card)
-	
+		
 func remove_card(card):
-	cards.remove(cards.find(card))
-	if card.get_parent():
-		card.get_parent().remove_child(card)
-	return card
+	if cards.has(card):
+		card.container = null
+		cards.remove(cards.find(card))
+		return card
 		
 func remove_all_cards():
 	var dup = cards.duplicate()
