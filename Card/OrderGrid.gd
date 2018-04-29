@@ -13,6 +13,7 @@ func new_orders():
 		for y in order_amount.y:
 			var inst = Order.instance()
 			add_child(inst)
+			inst.random_order()
 			inst.position = Vector2(x,y) * offset
 			inst.reset_position = inst.position
 			
