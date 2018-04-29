@@ -95,6 +95,9 @@ func face_down_enter():
 	draggable = false
 
 func _drop():
+	for inst in get_tree().get_nodes_in_group("decks"):
+		if inst.mouse_over:
+			inst.add_card_to_bottom(self)
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
 		if inst.mouse_over:
 			inst.add_card(self)
