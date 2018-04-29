@@ -5,8 +5,10 @@ extends "res://Card/Card.gd"
 #As such, it is necessary to check Ingredient.ingredientIndex
 #instead of comparing directly.
 var myIngredients = []
-onready var myGrid = get_node("Container/theGrid")
-onready var myLabel = get_node("Container/nameLabel")
+onready var myGrid = get_node("splitter/theGrid")
+onready var nameLabel = get_node("splitter/labelSplitter/nameLabel")
+onready var pointLabel = get_node("splitter/labelSplitter/pointLabel")
+onready var faceUpVisuals = get_node("splitter")
 var perfectBonus = 0
 
 func _ready():
@@ -16,6 +18,12 @@ func _ready():
 	draggable = true
 	
 	_generateOrder(0)
+
+func face_up_enter():
+	faceUpVisuals.show()
+
+func face_down_enter():
+	faceUpVisuals.hide()
 
 func _setOrder(inputIngredients):
 	myIngredients = inputIngredients.duplicate()
@@ -65,7 +73,11 @@ func _scoreIngredients(ingredients):
 	for myIngredient in myIngredients:
 		var ind = _findIngredient(myIngredient,ingredients)
 		score += ingredients[ind].pointVal
+		ingredients[ind].queue_free()
 		ingredients.remove(ind)
+		
+	
+	score += perfectBonus*int((len(ingredients)==0))
 	
 	for extra in ingredients:
 		score -= extra.pointVal
@@ -90,6 +102,7 @@ func _generateOrder(index):
 			perfectBonus = 40
 			orderName = "Grilled Cheese"
 	
-	myLabel.text = orderName
+	nameLabel.text = orderName
+	pointLabel.text = str(perfectBonus)
 	myIngredients = newOrder+[ingredient.bread]
 	_loadIntoGrid()
