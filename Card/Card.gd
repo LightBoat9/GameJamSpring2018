@@ -8,6 +8,7 @@ var _mouse_relative = Vector2()  # Relative position of mouse for dragging relat
 
 onready var tex_faceUp = preload("res://Card/textures/card_faceUp.png")
 onready var tex_faceDown = preload("res://Card/textures/card_faceDown.png")
+onready var gmast = get_tree().root.get_child(get_tree().root.get_child_count()-1).get_node("GameMaster")
 
 var reset_position = Vector2()
 
@@ -97,7 +98,7 @@ func face_down_enter():
 func _drop():
 	for inst in get_tree().get_nodes_in_group("decks"):
 		if inst.mouse_over:
-			inst.add_card_to_bottom(self)
+			gmast.return_to_deck(self)
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
 		if inst.mouse_over:
 			inst.add_card(self)

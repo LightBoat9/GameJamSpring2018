@@ -76,9 +76,9 @@ func add_card_to_bottom(card):
 	add_child(card)
 	card.set_current_state("face_down")
 	# Set the position
-	cards.insert(0, card)
-	align_cards()
+	cards.push_front(card)
 	card.container = self
+	align_cards()
 	
 func align_cards():
 	for x in range(len(cards)):

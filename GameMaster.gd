@@ -13,6 +13,11 @@ onready var text_area = get_node("Label")
 func _ready():
 	set_current_state("new_game")
 	button.connect("pressed", self, "button_pressed")
+	
+func return_to_deck(card):
+	if card.container:
+		card.container.remove_card(card)
+	deck.add_card_to_bottom(card)
 
 func button_pressed():
 	set_current_state(next_state)
