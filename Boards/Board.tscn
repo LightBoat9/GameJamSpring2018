@@ -10,7 +10,8 @@
 
 [node name="GameMaster" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 736.147, 502.385 )
+position = Vector2( 620, 475 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Hand" parent="." index="1" instance=ExtResource( 2 )]
 

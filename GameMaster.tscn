@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GameMaster.gd" type="Script" id=1]
+[ext_resource path="res://Digitalt.ttf" type="DynamicFontData" id=2]
 
-[node name="GameMaster" type="Node2D" index="0"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 24
+use_mipmaps = false
+use_filter = true
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="GameMaster" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -12,10 +29,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 27.0
-margin_top = 25.0
-margin_right = 96.0
-margin_bottom = 45.0
+margin_left = 100.0
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -23,6 +40,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -30,6 +48,7 @@ group = null
 text = "Continue"
 flat = false
 align = 1
+_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 [node name="Label" type="Label" parent="." index="1"]
 
@@ -37,19 +56,20 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 4.0
-margin_top = 7.0
-margin_right = 130.0
-margin_bottom = 21.0
+margin_right = 300.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
 text = "Player 1 Look Away!"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 

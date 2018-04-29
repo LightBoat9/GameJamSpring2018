@@ -50,3 +50,22 @@ func remove_all_cards():
 	while not cards.empty():
 		remove_card(cards[len(cards)-1])
 	return dup
+	
+func add_card_to_botttom(card):
+	if not card is preload("res://Card/Ingredient.gd"):
+		return
+	if card.get_parent():
+		card.get_parent().remove_child(card)
+	add_child(card)
+	card.set_current_state("face_down")
+	# Set the position
+	cards.insert(0, card)
+	align_cards()
+	card.container = self
+	
+func align_cards():
+	for x in range(len(cards)):
+		cards[x].z_index = x
+		cards[x].Vector2(0, x * card_offset.y - cards[x].texture.get_size().y/2)
+		cards[x].reset_position = cards[x].position
+	

@@ -41,6 +41,8 @@ func _mouse_exited():
 	mouse_over = false
 	
 func add_card(card):
+	if len(cards) > 1 and cards[len(cards) - 1].ingredientIndex == card.ingredient.bread:
+		return
 	if not card is preload("res://Card/Ingredient.gd"):
 		return
 	if not len(cards) and card.ingredientIndex != card.ingredient.bread:
@@ -85,7 +87,7 @@ func remove_all_cards():
 	
 func _drop():
 	for inst in get_tree().get_nodes_in_group("drag_slots"):
-		if inst != self and inst.mouse_over:
+		if inst != self and inst.mouse_over and not len(inst.cards):
 			inst.add_cards_from_array(remove_all_cards())
 	for inst in get_tree().get_nodes_in_group("SandwichReceptacles"):
 		if inst.mouse_over:
