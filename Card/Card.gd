@@ -113,7 +113,7 @@ func _getIngredientTexture(index):
 	match index:
 		ingredient.bread:
 			texPath = "res://Card/textures/ingredients/bread.png"
-			if (rand_range(1,100)) < 20:
+			if (rand_range(1,100)) < 10:
 				texPath = "res://Card/textures/ingredients/breadSpecial.png"
 		ingredient.lettuce:
 			texPath = "res://Card/textures/ingredients/lettuce.png"

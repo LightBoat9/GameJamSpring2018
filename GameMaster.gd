@@ -53,6 +53,9 @@ func new_game_enter():
 func play_cards_enter():
 	if len(hand.cards) < hand.MAX_CARDS:
 		draw(1)
+	if not len(deck.cards):
+		deck.new_cards()
+		deck.shuffle(100)	
 	text_area.text = "Player " + str(current_player) + "'s Play Phase"
 	button.text = "End Turn"
 	set_hand_state("face_up")
@@ -64,6 +67,7 @@ func change_player_enter():
 	set_hand_state("face_down")
 	set_order_state("face_down")
 	text_area.text = "Player " + str(1 if current_player == 2 else 2) + " Look Away!"
+	button.text = "Continue"
 	next_state = "play_cards"
 	
 func player_cards_exit():
@@ -92,7 +96,8 @@ func change_players():
 func draw(amount):
 	for i in range(amount):
 		var card = deck.remove_top_card()
-		hand.add_card(card)
+		if card:
+			hand.add_card(card)
 		
 func add_score(amount):
 	scores[current_player-1] += amount
