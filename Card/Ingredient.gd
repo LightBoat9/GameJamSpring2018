@@ -30,7 +30,7 @@ func _loadIngredientTexture(i):
 			pointVal = 20
 			name = "Tomato"
 		ingredient.cheese:
-			pointVal = 30
+			pointVal = 15
 			name = "Cheese"
 		ingredient.butter:
 			pointVal = 20
