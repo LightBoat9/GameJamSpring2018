@@ -1,6 +1,7 @@
 extends "res://BaseScripts/state_machine.gd"
 
 var current_player = 1
+var return_count = 0
 
 onready var scores_labels = [get_node("P1Score"), get_node("P2Score")]
 onready var scores = [0,0]
@@ -19,14 +20,19 @@ func _ready():
 	set_current_state("new_game")
 	button.connect("pressed", self, "button_pressed")
 	
-func return_to_deck(card):
+func return_to_deck(card,returnCount=true):
+	if returnCount : return_count+=1
 	if card.container:
 		card.container.remove_card(card)
 	deck.add_card_to_bottom(card)
+	if return_count>1:
+		return_count = 0
+		draw(1)
+		set_hand_state("face_up")
 
 func return_to_deck_arr(arr):
 	while len(arr) > 0:
-		return_to_deck(arr.pop_front())
+		return_to_deck(arr.pop_front(),false)
 
 func button_pressed():
 	set_current_state(next_state)
@@ -72,6 +78,8 @@ func set_order_state(state):
 		x.set_current_state(state)
 		
 func change_players():
+	return_count = 0
+	
 	var temp1 = temp_hand.remove_all_cards()
 	temp_hand.add_cards_from_array(hand.remove_all_cards())
 	hand.add_cards_from_array(temp1)
