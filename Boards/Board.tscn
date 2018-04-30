@@ -6,7 +6,7 @@
 [ext_resource path="res://Field/Deck/Deck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Card/OrderGrid.tscn" type="PackedScene" id=5]
 
-[node name="Board" type="Node2D" index="0"]
+[node name="Board" type="Node2D"]
 
 [node name="GameMaster" parent="." index="0" instance=ExtResource( 1 )]
 

@@ -12,7 +12,7 @@ onready var ing_amounts = {
 	Card.ingredient.beef: 2
 	}
 	
-var Ingredient = preload("res://Card/Ingredient.tscn")
+var Ingredient = load("res://Card/Ingredient.tscn")
 
 onready var area = get_node("Area2D")
 onready var shape = get_node("Area2D/CollisionShape2D").shape
